@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>MedBot</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/material-kit.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-stars.css">
+
+</head>
+<body>
+ <div id="app">
+    <nav class="navbar  navbar-transparent    navbar-absolute  navbar-expand-lg " color-on-scroll="100">
+  <div class="container">
+    <a class="navbar-brand" href="#"><img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png" width="150" height="50" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="auth.html">Login</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 banner-text">
+                <strong>MedBot helps you diagnose yourself</strong>
+        </div>
+        <div class="col-md-6 input">
+
+            <div class="form-group has-success">
+                <input type="text" class="form-control" v-on:keyup.enter="queryFunction" v-model="queryInput" />
+                <span class="form-control-feedback" style="color: #fff">
+                    <i class="fa fa-sign-in"></i>
+                </span>
+            </div>
+            <p>Enter your symptoms or questions and MedBot will give you a diagnosis</p>
+        </div>
+    </div>
+    </div>
+<div class="container-fluid">
+    <div class="row ans">
+
+        <div class="col-12 col-md-6 body" id="bodyAns">
+            <div v-show="dataLoading" class="animatedLoading">
+                <i class="fa fa-2x fa-spinner fa-spin"></i>
+            </div>
+        <ul>
+            <li v-for="result in results">
+                {{result}}
+            </li>
+        </div>
+        <div class="col-12 col-md-6 rating">
+            <div v-bind:class="{inActive: ratingIsInActive}">
+            <h3>Rate now or later(Sign In)?</h3>
+            
+                <select id="example">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+              </select>
+          
+          </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="assets/js/core/jquery.min.js"></script>
+<script src="assets/js/core/popper.min.js"></script>
+<script src="assets/js/bootstrap-material-design.js"></script>
+<script src="assets/js/jquery.barrating.min.js"></script>
+<script src="assets/js/material-kit.js?v=2.0.0"></script>
+<script>
+    $( document ).ready(function() {
+        $('#example').barrating({
+            theme: 'fontawesome-stars',
+            initialRating: 0,
+            onSelect: function(value, text, event) {
+                if (typeof(event) !== 'undefined') {
+                }
+            console.log(value);
+            }   
+});
+    });
+</script>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>
